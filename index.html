@@ -13,6 +13,37 @@
       color: #f5f5f5;
     }
 
+    /* ЗОЛОТЫЕ ВЕНЗЕЛЯ ПО УГЛАМ */
+    .vensel {
+      position: fixed;
+      font-size: 70px;
+      color: #c9a24b;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: vensel-up 2.5s ease forwards;
+      pointer-events: none;
+      z-index: 999;
+      text-shadow: 0 0 12px rgba(201,162,75,0.7);
+    }
+    .vensel.top-left     { top: 10px; left: 15px; }
+    .vensel.top-right    { top: 10px; right: 15px; }
+    .vensel.bottom-left  { bottom: 10px; left: 15px; }
+    .vensel.bottom-right { bottom: 10px; right: 15px; }
+
+    @keyframes vensel-up {
+      to { opacity: 0.8; transform: translateY(0); }
+    }
+
+    /* ЗОЛОТОЙ РАЗДЕЛИТЕЛЬ */
+    .zoloto-razdelitel {
+      text-align: center;
+      color: #c9a24b;
+      font-size: 34px;
+      margin: 50px 0;
+      text-shadow: 0 0 10px rgba(201,162,75,0.6);
+      letter-spacing: 12px;
+    }
+
     /* ШАПКА */
     .hero {
       min-height: 100vh;
@@ -181,10 +212,17 @@
     @media (max-width: 600px) {
       .hero h1 { font-size: 38px; letter-spacing: 4px; }
       .section-title { font-size: 28px; }
+      .vensel { font-size: 40px; }
     }
   </style>
 </head>
 <body>
+
+  <!-- ЗОЛОТЫЕ ВЕНЗЕЛЯ ПО УГЛАМ -->
+  <div class="vensel top-left">❧</div>
+  <div class="vensel top-right">❧</div>
+  <div class="vensel bottom-left">❦</div>
+  <div class="vensel bottom-right">❦</div>
 
   <!-- ШАПКА -->
   <section class="hero">
@@ -218,6 +256,8 @@
     </div>
   </div>
 
+  <div class="zoloto-razdelitel">❦ ⚜ ❦</div>
+
   <!-- ПОРТФОЛИО -->
   <h2 class="section-title reveal" id="works">Портфолио</h2>
 
@@ -233,6 +273,8 @@
     </div>
   </div>
 
+  <div class="zoloto-razdelitel">❦ ⚜ ❦</div>
+
   <div class="work reveal">
     <h2>Кружевной комплект</h2>
     <span class="tag">Wildberries</span>
@@ -244,6 +286,8 @@
       <img src="w2-5.png" alt="Кружевной комплект">
     </div>
   </div>
+
+  <div class="zoloto-razdelitel">❦ ⚜ ❦</div>
 
   <div class="work reveal">
     <h2>Комплект для взрослых</h2>
@@ -257,6 +301,8 @@
     </div>
   </div>
 
+  <div class="zoloto-razdelitel">❦ ⚜ ❦</div>
+
   <div class="work reveal">
     <h2>Апгрейд с тортом</h2>
     <span class="tag">Wildberries</span>
@@ -268,6 +314,8 @@
       <img src="w4-5.jpg" alt="Апгрейд с тортом">
     </div>
   </div>
+
+  <div class="zoloto-razdelitel">❦ ⚜ ❦</div>
 
   <div class="work reveal">
     <h2>Предметка 18+</h2>
@@ -281,6 +329,8 @@
     </div>
   </div>
 
+  <div class="zoloto-razdelitel">❦ ⚜ ❦</div>
+
   <div class="work reveal">
     <h2>Нежный лукбук</h2>
     <span class="tag">Wildberries</span>
@@ -293,17 +343,19 @@
     </div>
   </div>
 
+  <div class="zoloto-razdelitel">❦ ⚜ ❦</div>
+
   <div class="work reveal">
     <h2>Мужские трусы</h2>
     <span class="tag">Wildberries</span>
     <div class="photos">
-      <img src="w7-1.png" alt="Мужские трусы">
-      <img src="w7-2.png" alt="Мужские трусы">
       <img src="w7-3.png" alt="Мужские трусы">
       <img src="w7-4.jpg" alt="Мужские трусы">
       <img src="w7-5.jpg" alt="Мужские трусы">
     </div>
   </div>
+
+  <div class="zoloto-razdelitel">❦ ⚜ ❦</div>
 
   <div class="work reveal">
     <h2>Мужские боксеры</h2>
@@ -316,6 +368,8 @@
       <img src="w8-5.jpg" alt="Мужские боксеры">
     </div>
   </div>
+
+  <div class="zoloto-razdelitel">❦ ⚜ ❦</div>
 
   <!-- ФУТЕР -->
   <footer class="reveal">
