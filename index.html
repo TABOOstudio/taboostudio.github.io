@@ -13,35 +13,45 @@
       color: #f5f5f5;
     }
 
-    /* ЗОЛОТЫЕ ВЕНЗЕЛЯ ПО УГЛАМ */
-    .vensel {
+    /* ЗОЛОТОЙ ГРАДИЕНТ ДЛЯ ВЕНЗЕЛЕЙ */
+    .svg-defs { position: absolute; width: 0; height: 0; }
+
+    /* ВЕНЗЕЛЯ ПО УГЛАМ */
+    .corner {
       position: fixed;
-      font-size: 70px;
-      color: #c9a24b;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: vensel-up 2.5s ease forwards;
-      pointer-events: none;
+      width: 160px;
+      height: 160px;
       z-index: 999;
-      text-shadow: 0 0 12px rgba(201,162,75,0.7);
+      pointer-events: none;
+      opacity: 0;
+      animation: cornerFade 3s ease forwards;
+      filter: drop-shadow(0 0 8px rgba(201,162,75,0.6));
     }
-    .vensel.top-left     { top: 10px; left: 15px; }
-    .vensel.top-right    { top: 10px; right: 15px; }
-    .vensel.bottom-left  { bottom: 10px; left: 15px; }
-    .vensel.bottom-right { bottom: 10px; right: 15px; }
+    .corner.tl { top: 0; left: 0; }
+    .corner.tr { top: 0; right: 0; transform: scaleX(-1); }
+    .corner.bl { bottom: 0; left: 0; transform: scaleY(-1); }
+    .corner.br { bottom: 0; right: 0; transform: scale(-1,-1); }
 
-    @keyframes vensel-up {
-      to { opacity: 0.8; transform: translateY(0); }
+    @keyframes cornerFade {
+      to { opacity: 0.9; }
     }
 
-    /* ЗОЛОТОЙ РАЗДЕЛИТЕЛЬ */
-    .zoloto-razdelitel {
-      text-align: center;
-      color: #c9a24b;
-      font-size: 34px;
-      margin: 50px 0;
-      text-shadow: 0 0 10px rgba(201,162,75,0.6);
-      letter-spacing: 12px;
+    /* РАЗДЕЛИТЕЛЬ */
+    .divider {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 55px 0;
+    }
+    .divider svg {
+      width: 340px;
+      height: 40px;
+      filter: drop-shadow(0 0 6px rgba(201,162,75,0.5));
+      animation: shimmer 4s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0%, 100% { opacity: 0.75; }
+      50% { opacity: 1; }
     }
 
     /* ШАПКА */
@@ -90,7 +100,6 @@
       box-shadow: 0 0 25px rgba(201,162,75,0.6);
     }
 
-    /* ЗАГОЛОВКИ СЕКЦИЙ */
     .section-title {
       text-align: center;
       font-size: 40px;
@@ -100,7 +109,6 @@
       margin: 80px 0 50px;
     }
 
-    /* ПОЧЕМУ МЫ */
     .why {
       max-width: 1100px;
       margin: 0 auto;
@@ -124,23 +132,15 @@
       box-shadow: 0 0 25px rgba(201,162,75,0.3);
       transform: translateY(-8px);
     }
-    .why-card .icon {
-      font-size: 40px;
-      margin-bottom: 18px;
-    }
+    .why-card .icon { font-size: 40px; margin-bottom: 18px; }
     .why-card h3 {
       color: #c9a24b;
       font-size: 20px;
       letter-spacing: 1px;
       margin-bottom: 12px;
     }
-    .why-card p {
-      color: #bbb;
-      font-size: 15px;
-      line-height: 1.6;
-    }
+    .why-card p { color: #bbb; font-size: 15px; line-height: 1.6; }
 
-    /* ПОРТФОЛИО */
     .work {
       max-width: 1000px;
       margin: 0 auto 70px;
@@ -162,11 +162,7 @@
       margin-bottom: 20px;
       text-transform: uppercase;
     }
-    .photos {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
+    .photos { display: flex; flex-wrap: wrap; gap: 12px; }
     .photos img {
       flex: 1 1 170px;
       max-width: 190px;
@@ -183,7 +179,6 @@
       border-color: #c9a24b;
     }
 
-    /* ФУТЕР */
     footer {
       text-align: center;
       padding: 60px 20px;
@@ -198,31 +193,65 @@
     }
     footer p { color: #999; }
 
-    /* АНИМАЦИЯ ПОЯВЛЕНИЯ */
     .reveal {
       opacity: 0;
       transform: translateY(50px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 600px) {
       .hero h1 { font-size: 38px; letter-spacing: 4px; }
       .section-title { font-size: 28px; }
-      .vensel { font-size: 40px; }
+      .corner { width: 90px; height: 90px; }
+      .divider svg { width: 240px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ЗОЛОТЫЕ ВЕНЗЕЛЯ ПО УГЛАМ -->
-  <div class="vensel top-left">❧</div>
-  <div class="vensel top-right">❧</div>
-  <div class="vensel bottom-left">❦</div>
-  <div class="vensel bottom-right">❦</div>
+  <!-- ЗОЛОТОЙ ГРАДИЕНТ (общий для всех узоров) -->
+  <svg class="svg-defs">
+    <defs>
+      <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#f9e08a"/>
+        <stop offset="25%" stop-color="#c9a24b"/>
+        <stop offset="50%" stop-color="#fff3c4"/>
+        <stop offset="75%" stop-color="#b8860b"/>
+        <stop offset="100%" stop-color="#f9e08a"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- ЦАРСТВЕННЫЕ ВЕНЗЕЛЯ ПО УГЛАМ -->
+  <svg class="corner tl" viewBox="0 0 200 200">
+    <path fill="none" stroke="url(#gold)" stroke-width="2.5"
+      d="M10,10 C10,80 60,60 55,110 C52,140 20,140 25,175
+         M10,10 C80,10 60,60 110,55 C140,52 140,20 175,25
+         M10,10 C40,40 70,30 90,45 C70,50 55,70 65,95
+         M45,45 a10,10 0 1,0 0.1,0"/>
+  </svg>
+  <svg class="corner tr" viewBox="0 0 200 200">
+    <path fill="none" stroke="url(#gold)" stroke-width="2.5"
+      d="M10,10 C10,80 60,60 55,110 C52,140 20,140 25,175
+         M10,10 C80,10 60,60 110,55 C140,52 140,20 175,25
+         M10,10 C40,40 70,30 90,45 C70,50 55,70 65,95
+         M45,45 a10,10 0 1,0 0.1,0"/>
+  </svg>
+  <svg class="corner bl" viewBox="0 0 200 200">
+    <path fill="none" stroke="url(#gold)" stroke-width="2.5"
+      d="M10,10 C10,80 60,60 55,110 C52,140 20,140 25,175
+         M10,10 C80,10 60,60 110,55 C140,52 140,20 175,25
+         M10,10 C40,40 70,30 90,45 C70,50 55,70 65,95
+         M45,45 a10,10 0 1,0 0.1,0"/>
+  </svg>
+  <svg class="corner br" viewBox="0 0 200 200">
+    <path fill="none" stroke="url(#gold)" stroke-width="2.5"
+      d="M10,10 C10,80 60,60 55,110 C52,140 20,140 25,175
+         M10,10 C80,10 60,60 110,55 C140,52 140,20 175,25
+         M10,10 C40,40 70,30 90,45 C70,50 55,70 65,95
+         M45,45 a10,10 0 1,0 0.1,0"/>
+  </svg>
 
   <!-- ШАПКА -->
   <section class="hero">
@@ -235,143 +264,123 @@
   <h2 class="section-title reveal">Почему мы</h2>
   <div class="why">
     <div class="why-card reveal">
-      <div class="icon">🔥</div>
-      <h3>Работаем в 18+</h3>
+      <div class="icon">🔥</div><h3>Работаем в 18+</h3>
       <p>Там, где другие боятся модерации — мы делаем дерзко, но проходим WB и Ozon.</p>
     </div>
     <div class="why-card reveal">
-      <div class="icon">💎</div>
-      <h3>Гиперреализм</h3>
+      <div class="icon">💎</div><h3>Гиперреализм</h3>
       <p>Фото уровня студийной съёмки. Не отличить от настоящей модели — только дешевле и быстрее.</p>
     </div>
     <div class="why-card reveal">
-      <div class="icon">⚡</div>
-      <h3>Быстро</h3>
+      <div class="icon">⚡</div><h3>Быстро</h3>
       <p>Не ждёте моделей, аренду студий и ретушь неделями. Готовый комплект — в короткие сроки.</p>
     </div>
     <div class="why-card reveal">
-      <div class="icon">📈</div>
-      <h3>Продаём, а не украшаем</h3>
+      <div class="icon">📈</div><h3>Продаём, а не украшаем</h3>
       <p>Каждое фото и текст заточены под конверсию. Ваша карточка цепляет и продаёт.</p>
     </div>
   </div>
 
-  <div class="zoloto-razdelitel">❦ ⚜ ❦</div>
+  <!-- РАЗДЕЛИТЕЛЬ -->
+  <div class="divider">
+    <svg viewBox="0 0 340 40">
+      <path fill="none" stroke="url(#gold)" stroke-width="2"
+        d="M10,20 C60,20 60,5 90,20 C120,35 120,5 150,20
+           M330,20 C280,20 280,5 250,20 C220,35 220,5 190,20
+           M150,20 Q170,4 190,20 Q170,36 150,20 Z"/>
+      <circle cx="170" cy="20" r="4" fill="url(#gold)"/>
+    </svg>
+  </div>
 
   <!-- ПОРТФОЛИО -->
   <h2 class="section-title reveal" id="works">Портфолио</h2>
 
   <div class="work reveal">
-    <h2>Комплект 18+</h2>
-    <span class="tag">18+</span>
+    <h2>Комплект 18+</h2><span class="tag">18+</span>
     <div class="photos">
-      <img src="w1-1.png" alt="Комплект 18+">
-      <img src="w1-2.png" alt="Комплект 18+">
-      <img src="w1-3.png" alt="Комплект 18+">
-      <img src="w1-4.png" alt="Комплект 18+">
+      <img src="w1-1.png" alt="Комплект 18+"><img src="w1-2.png" alt="Комплект 18+">
+      <img src="w1-3.png" alt="Комплект 18+"><img src="w1-4.png" alt="Комплект 18+">
       <img src="w1-5.png" alt="Комплект 18+">
     </div>
   </div>
 
-  <div class="zoloto-razdelitel">❦ ⚜ ❦</div>
+  <div class="divider"><svg viewBox="0 0 340 40"><path fill="none" stroke="url(#gold)" stroke-width="2" d="M10,20 C60,20 60,5 90,20 C120,35 120,5 150,20 M330,20 C280,20 280,5 250,20 C220,35 220,5 190,20 M150,20 Q170,4 190,20 Q170,36 150,20 Z"/><circle cx="170" cy="20" r="4" fill="url(#gold)"/></svg></div>
 
   <div class="work reveal">
-    <h2>Кружевной комплект</h2>
-    <span class="tag">Wildberries</span>
+    <h2>Кружевной комплект</h2><span class="tag">Wildberries</span>
     <div class="photos">
-      <img src="w2-1.png" alt="Кружевной комплект">
-      <img src="w2-2.png" alt="Кружевной комплект">
-      <img src="w2-3.png" alt="Кружевной комплект">
-      <img src="w2-4.png" alt="Кружевной комплект">
+      <img src="w2-1.png" alt="Кружевной комплект"><img src="w2-2.png" alt="Кружевной комплект">
+      <img src="w2-3.png" alt="Кружевной комплект"><img src="w2-4.png" alt="Кружевной комплект">
       <img src="w2-5.png" alt="Кружевной комплект">
     </div>
   </div>
 
-  <div class="zoloto-razdelitel">❦ ⚜ ❦</div>
+  <div class="divider"><svg viewBox="0 0 340 40"><path fill="none" stroke="url(#gold)" stroke-width="2" d="M10,20 C60,20 60,5 90,20 C120,35 120,5 150,20 M330,20 C280,20 280,5 250,20 C220,35 220,5 190,20 M150,20 Q170,4 190,20 Q170,36 150,20 Z"/><circle cx="170" cy="20" r="4" fill="url(#gold)"/></svg></div>
 
   <div class="work reveal">
-    <h2>Комплект для взрослых</h2>
-    <span class="tag">18+</span>
+    <h2>Комплект для взрослых</h2><span class="tag">18+</span>
     <div class="photos">
-      <img src="w3-1.jpg" alt="Комплект для взрослых">
-      <img src="w3-2.jpg" alt="Комплект для взрослых">
-      <img src="w3-3.jpg" alt="Комплект для взрослых">
-      <img src="w3-4.jpg" alt="Комплект для взрослых">
+      <img src="w3-1.jpg" alt="Комплект для взрослых"><img src="w3-2.jpg" alt="Комплект для взрослых">
+      <img src="w3-3.jpg" alt="Комплект для взрослых"><img src="w3-4.jpg" alt="Комплект для взрослых">
       <img src="w3-5.jpg" alt="Комплект для взрослых">
     </div>
   </div>
 
-  <div class="zoloto-razdelitel">❦ ⚜ ❦</div>
+  <div class="divider"><svg viewBox="0 0 340 40"><path fill="none" stroke="url(#gold)" stroke-width="2" d="M10,20 C60,20 60,5 90,20 C120,35 120,5 150,20 M330,20 C280,20 280,5 250,20 C220,35 220,5 190,20 M150,20 Q170,4 190,20 Q170,36 150,20 Z"/><circle cx="170" cy="20" r="4" fill="url(#gold)"/></svg></div>
 
   <div class="work reveal">
-    <h2>Апгрейд с тортом</h2>
-    <span class="tag">Wildberries</span>
+    <h2>Апгрейд с тортом</h2><span class="tag">Wildberries</span>
     <div class="photos">
-      <img src="w4-1.jpg" alt="Апгрейд с тортом">
-      <img src="w4-2.jpg" alt="Апгрейд с тортом">
-      <img src="w4-3.jpg" alt="Апгрейд с тортом">
-      <img src="w4-4.jpg" alt="Апгрейд с тортом">
+      <img src="w4-1.jpg" alt="Апгрейд с тортом"><img src="w4-2.jpg" alt="Апгрейд с тортом">
+      <img src="w4-3.jpg" alt="Апгрейд с тортом"><img src="w4-4.jpg" alt="Апгрейд с тортом">
       <img src="w4-5.jpg" alt="Апгрейд с тортом">
     </div>
   </div>
 
-  <div class="zoloto-razdelitel">❦ ⚜ ❦</div>
+  <div class="divider"><svg viewBox="0 0 340 40"><path fill="none" stroke="url(#gold)" stroke-width="2" d="M10,20 C60,20 60,5 90,20 C120,35 120,5 150,20 M330,20 C280,20 280,5 250,20 C220,35 220,5 190,20 M150,20 Q170,4 190,20 Q170,36 150,20 Z"/><circle cx="170" cy="20" r="4" fill="url(#gold)"/></svg></div>
 
   <div class="work reveal">
-    <h2>Предметка 18+</h2>
-    <span class="tag">18+</span>
+    <h2>Предметка 18+</h2><span class="tag">18+</span>
     <div class="photos">
-      <img src="w5-1.png" alt="Предметка 18+">
-      <img src="w5-2.png" alt="Предметка 18+">
-      <img src="w5-3.png" alt="Предметка 18+">
-      <img src="w5-4.jpg" alt="Предметка 18+">
+      <img src="w5-1.png" alt="Предметка 18+"><img src="w5-2.png" alt="Предметка 18+">
+      <img src="w5-3.png" alt="Предметка 18+"><img src="w5-4.jpg" alt="Предметка 18+">
       <img src="w5-5.png" alt="Предметка 18+">
     </div>
   </div>
 
-  <div class="zoloto-razdelitel">❦ ⚜ ❦</div>
+  <div class="divider"><svg viewBox="0 0 340 40"><path fill="none" stroke="url(#gold)" stroke-width="2" d="M10,20 C60,20 60,5 90,20 C120,35 120,5 150,20 M330,20 C280,20 280,5 250,20 C220,35 220,5 190,20 M150,20 Q170,4 190,20 Q170,36 150,20 Z"/><circle cx="170" cy="20" r="4" fill="url(#gold)"/></svg></div>
 
   <div class="work reveal">
-    <h2>Нежный лукбук</h2>
-    <span class="tag">Wildberries</span>
+    <h2>Нежный лукбук</h2><span class="tag">Wildberries</span>
     <div class="photos">
-      <img src="w6-1.jpg" alt="Нежный лукбук">
-      <img src="w6-2.jpg" alt="Нежный лукбук">
-      <img src="w6-3.jpg" alt="Нежный лукбук">
-      <img src="w6-4.jpg" alt="Нежный лукбук">
+      <img src="w6-1.jpg" alt="Нежный лукбук"><img src="w6-2.jpg" alt="Нежный лукбук">
+      <img src="w6-3.jpg" alt="Нежный лукбук"><img src="w6-4.jpg" alt="Нежный лукбук">
       <img src="w6-5.jpg" alt="Нежный лукбук">
     </div>
   </div>
 
-  <div class="zoloto-razdelitel">❦ ⚜ ❦</div>
+  <div class="divider"><svg viewBox="0 0 340 40"><path fill="none" stroke="url(#gold)" stroke-width="2" d="M10,20 C60,20 60,5 90,20 C120,35 120,5 150,20 M330,20 C280,20 280,5 250,20 C220,35 220,5 190,20 M150,20 Q170,4 190,20 Q170,36 150,20 Z"/><circle cx="170" cy="20" r="4" fill="url(#gold)"/></svg></div>
 
   <div class="work reveal">
-    <h2>Мужские трусы</h2>
-    <span class="tag">Wildberries</span>
+    <h2>Мужские трусы</h2><span class="tag">Wildberries</span>
     <div class="photos">
-      <img src="w7-1.png" alt="Мужские трусы">
-      <img src="w7-2.png" alt="Мужские трусы">
-      <img src="w7-3.png" alt="Мужские трусы">
-      <img src="w7-4.jpg" alt="Мужские трусы">
+      <img src="w7-3.png" alt="Мужские трусы"><img src="w7-4.jpg" alt="Мужские трусы">
       <img src="w7-5.jpg" alt="Мужские трусы">
     </div>
   </div>
 
-  <div class="zoloto-razdelitel">❦ ⚜ ❦</div>
+  <div class="divider"><svg viewBox="0 0 340 40"><path fill="none" stroke="url(#gold)" stroke-width="2" d="M10,20 C60,20 60,5 90,20 C120,35 120,5 150,20 M330,20 C280,20 280,5 250,20 C220,35 220,5 190,20 M150,20 Q170,4 190,20 Q170,36 150,20 Z"/><circle cx="170" cy="20" r="4" fill="url(#gold)"/></svg></div>
 
   <div class="work reveal">
-    <h2>Мужские боксеры</h2>
-    <span class="tag">Wildberries</span>
+    <h2>Мужские боксеры</h2><span class="tag">Wildberries</span>
     <div class="photos">
-      <img src="w8-1.jpg" alt="Мужские боксеры">
-      <img src="w8-2.jpg" alt="Мужские боксеры">
-      <img src="w8-3.jpg" alt="Мужские боксеры">
-      <img src="w8-4.jpg" alt="Мужские боксеры">
+      <img src="w8-1.jpg" alt="Мужские боксеры"><img src="w8-2.jpg" alt="Мужские боксеры">
+      <img src="w8-3.jpg" alt="Мужские боксеры"><img src="w8-4.jpg" alt="Мужские боксеры">
       <img src="w8-5.jpg" alt="Мужские боксеры">
     </div>
   </div>
 
-  <div class="zoloto-razdelitel">❦ ⚜ ❦</div>
+  <div class="divider"><svg viewBox="0 0 340 40"><path fill="none" stroke="url(#gold)" stroke-width="2" d="M10,20 C60,20 60,5 90,20 C120,35 120,5 150,20 M330,20 C280,20 280,5 250,20 C220,35 220,5 190,20 M150,20 Q170,4 190,20 Q170,36 150,20 Z"/><circle cx="170" cy="20" r="4" fill="url(#gold)"/></svg></div>
 
   <!-- ФУТЕР -->
   <footer class="reveal">
@@ -386,7 +395,6 @@
     </p>
   </footer>
 
-  <!-- СКРИПТ АНИМАЦИИ -->
   <script>
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
